@@ -72,6 +72,7 @@ async function waitForOAuthCallback(): Promise<string | null> {
         return;
       }
 
+      
       const urlObj = new URL(`http://localhost${req.url}`);
       const token = urlObj.searchParams.get("token");
       const errorParam = urlObj.searchParams.get("error");
