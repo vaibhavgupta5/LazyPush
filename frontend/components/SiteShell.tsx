@@ -42,20 +42,20 @@ export function Header({ activeHref, showCommands }: HeaderProps) {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden sm:flex items-center gap-6 text-sm text-muted">
+          <nav className="hidden sm:flex items-center gap-3 text-sm text-muted">
             {navLinks.map((l) =>
               l.href.startsWith("#") ? (
                 <a key={l.href} href={l.href} className={`hover:text-heading transition-colors ${activeHref === l.href ? "text-heading font-medium" : ""}`}>
                   {l.label}
                 </a>
               ) : (
-                <Link key={l.href} href={l.href} className={`hover:text-heading transition-colors ${activeHref === l.href ? "text-heading font-medium" : ""}`}>
+                <Link key={l.href} href={l.href} className={`hover:text-heading transition-colors ${activeHref === l.href ? "text-heading mr-2 font-medium" : ""}`}>
                   {l.label}
                 </Link>
               )
             )}
             <a
-              className="flex items-center gap-1.5 rounded-md border border-border bg-surface px-3 py-1.5 text-foreground hover:border-muted hover:text-heading transition-colors text-xs"
+              className="flex md:ml-2 items-center gap-1.5 rounded-md border border-border bg-surface px-3 py-1.5 text-foreground hover:border-muted hover:text-heading transition-colors text-xs"
               href="https://github.com/vaibhavgupta5"
               target="_blank"
               rel="noopener noreferrer"
