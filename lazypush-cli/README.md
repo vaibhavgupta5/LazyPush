@@ -9,6 +9,8 @@
 
 _Schedule Git commits for a future push — no local daemons, no open terminals, no guilt._
 
+[Website](https://lazypush.vercel.app/) · [Docs](https://lazypush.vercel.app/docs) · [Support](https://lazypush.vercel.app/support)
+
 </div>
 
 ---

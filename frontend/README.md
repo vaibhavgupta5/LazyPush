@@ -7,7 +7,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square)](../LICENSE)
 
-*The landing page, documentation, and support portal for [lazypush.dev](https://lazypush.dev)*
+*The landing page, documentation, and support portal for [lazypush.vercel.app](https://lazypush.vercel.app/)*
 
 </div>
 

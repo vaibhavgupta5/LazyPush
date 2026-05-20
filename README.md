@@ -12,7 +12,7 @@
 
 *Done at 3pm but the sprint ends at 6? Schedule your push for 5:55. Your commit history will never rat you out. LazyPush is the alibi your productivity needed.*
 
-[Website](https://lazypush.dev) · [Docs](https://lazypush.dev/docs) · [Support](https://lazypush.dev/support)
+[Website](https://lazypush.vercel.app/) · [Docs](https://lazypush.vercel.app/docs) · [Support](https://lazypush.vercel.app/support)
 
 </div>
 
@@ -77,7 +77,7 @@ lazypush schedule
 LazyPush/
 ├── lazypush-cli/      # npm package — the tool you install globally
 ├── backend/           # Hono + MongoDB — the cloud worker that does the actual push
-├── frontend/          # Next.js — lazypush.dev landing page, docs, support
+├── frontend/          # Next.js — lazypush.vercel.app landing page, docs, support
 └── README.md          # you are here
 ```
 
