@@ -21,7 +21,7 @@ export async function handleLogin() {
     }
 
     const token = await waitForOAuthCallback();
-    
+
     if (!token) {
       error("Authentication cancelled");
       process.exit(1);
@@ -31,9 +31,9 @@ export async function handleLogin() {
     try {
       const jwtPayload = parseJwt(token);
       if (!jwtPayload.userId) {
-        throw new Error('Invalid token: missing userId');
+        throw new Error("Invalid token: missing userId");
       }
-      
+
       const session = {
         token,
         userId: jwtPayload.userId,
@@ -59,11 +59,14 @@ async function waitForOAuthCallback(): Promise<string | null> {
   return new Promise((resolve) => {
     let server: Server | null = null;
     const port = 3001;
-    const timeout = setTimeout(() => {
-      if (server) server.close();
-      error("Login timeout - no response from GitHub");
-      resolve(null);
-    }, 10 * 60 * 1000); // 10 minute timeout
+    const timeout = setTimeout(
+      () => {
+        if (server) server.close();
+        error("Login timeout - no response from GitHub");
+        resolve(null);
+      },
+      10 * 60 * 1000,
+    ); // 10 minute timeout
 
     server = createServer((req, res) => {
       if (!req.url) {
@@ -72,7 +75,6 @@ async function waitForOAuthCallback(): Promise<string | null> {
         return;
       }
 
-      
       const urlObj = new URL(`http://localhost${req.url}`);
       const token = urlObj.searchParams.get("token");
       const errorParam = urlObj.searchParams.get("error");
@@ -101,8 +103,9 @@ async function waitForOAuthCallback(): Promise<string | null> {
 
     server.listen(port, () => {
       info("Opening browser for GitHub authentication...");
-      const apiUrl = process.env.LAZYPUSH_API || "https://lazypush.onrender.com";
-      const redirectUri = `http://localhost:${port}/auth/callback`;
+      const apiUrl =
+        process.env.LAZYPUSH_API || "https://lazypush.onrender.com";
+      const redirectUri = `https://lazypush.onrender.com/auth/callback`;
       const loginUrl = `${apiUrl}/auth/github?redirect_uri=${encodeURIComponent(redirectUri)}`;
 
       open(loginUrl);
