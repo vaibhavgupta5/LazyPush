@@ -10,14 +10,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     import("locomotive-scroll").then((mod) => {
       const LocomotiveScroll = mod.default;
-      if (containerRef.current) {
-        scroll = new LocomotiveScroll({
-          el: containerRef.current,
-          smooth: true,
-          lerp: 0.08,
-          multiplier: 0.9,
-        });
-      }
+      scroll = new LocomotiveScroll();
     });
 
     return () => {
