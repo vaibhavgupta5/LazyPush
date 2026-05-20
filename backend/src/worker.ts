@@ -30,6 +30,7 @@ async function processJob(job: any) {
       scheduledAt: job.scheduledAt
     });
     job.status = 'done';
+    job.bundleBase64 = ''; // Clear to save space
     await job.save();
   } catch (e: any) {
     error('job failed', e.message || e);

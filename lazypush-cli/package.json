@@ -1,0 +1,30 @@
+{
+  "name": "lazypush",
+  "version": "0.1.0",
+  "description": "Schedule Git commits for future push",
+  "main": "dist/cli.js",
+  "bin": {
+    "lazypush": "dist/cli.js"
+  },
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/cli.ts",
+    "build": "tsc -p tsconfig.json",
+    "link": "tsc -p tsconfig.json && npm link",
+    "prepublishOnly": "npm run build"
+  },
+  "preferGlobal": true,
+  "dependencies": {
+    "axios": "^1.4.0",
+    "chalk": "^4.1.2",
+    "commander": "^9.4.1",
+    "dayjs": "^1.11.9",
+    "inquirer": "^8.2.5",
+    "open": "^8.4.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^8.2.12",
+    "@types/node": "^20.0.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.0"
+  }
+}

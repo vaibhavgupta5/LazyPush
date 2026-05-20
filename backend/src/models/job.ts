@@ -8,7 +8,7 @@ export interface IJob extends Document {
   branch: string;
   scheduledAt: Date;
   status: JobStatus;
-  bundleBase64: string;
+  bundleBase64?: string; // Cleared after successful push
   commitMessage?: string;
   attempts: number;
   lastError?: string;
@@ -21,7 +21,7 @@ const JobSchema = new Schema<IJob>({
   branch: { type: String, required: true },
   scheduledAt: { type: Date, required: true },
   status: { type: String, default: 'scheduled' },
-  bundleBase64: { type: String, required: true },
+  bundleBase64: { type: String }, // Cleared after successful push to save space
   commitMessage: { type: String },
   attempts: { type: Number, default: 0 },
   lastError: { type: String },
