@@ -51,6 +51,16 @@ export class ApiClient {
     return res.data;
   }
 
+  async listAllJobs() {
+    const token = getAuthToken();
+    if (!token) throw new Error('Not logged in');
+
+    const res = await this.client.get('/schedule/list', {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    return res.data;
+  }
+
   async cancelJob(id: string) {
     const token = getAuthToken();
     if (!token) throw new Error('Not logged in');

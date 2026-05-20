@@ -45,10 +45,6 @@ Features:
 - Zero config, no setup needed
 - Works in any git repo
 
-Environment:
-
-LAZYPUSH_API - Backend API URL (default: http://localhost:3000)
-
 Development:
 
 npm install

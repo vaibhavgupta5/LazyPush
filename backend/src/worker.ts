@@ -36,6 +36,9 @@ async function processJob(job: any) {
     error('job failed', e.message || e);
     job.status = 'failed';
     job.lastError = String(e?.message || e);
+    if (job.attempts >= 3) {
+      job.bundleBase64 = '';
+    }
     await job.save();
   }
 }

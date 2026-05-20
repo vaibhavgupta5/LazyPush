@@ -3,7 +3,7 @@
 import { program } from 'commander';
 import { handleLogin } from './commands/login';
 import { handleSchedule, handleScheduleInteractive } from './commands/schedule';
-import { handleJobs, handleCancel } from './commands/jobs';
+import { handleJobs, handleCancel, handleList } from './commands/jobs';
 import { handleLogout } from './commands/logout';
 
 program
@@ -36,6 +36,11 @@ program
   .action(async () => handleJobs());
 
 program
+  .command('list')
+  .description('List all scheduled and finished jobs (latest first)')
+  .action(async () => handleList());
+
+program
   .command('cancel <id>')
   .description('Cancel a scheduled job')
   .action(async (id: string) => {
@@ -46,6 +51,28 @@ program
   .command('logout')
   .description('Logout and clear session')
   .action(handleLogout);
+
+program
+  .command('help')
+  .description('Show command help')
+  .action(() => {
+    console.log('LazyPush CLI');
+    console.log('');
+    console.log('Commands:');
+    console.log('  login                 Authenticate with GitHub');
+    console.log('  schedule              Schedule a push (interactive or flags)');
+    console.log('  jobs                  List your scheduled jobs');
+    console.log('  list                  List all scheduled and finished jobs');
+    console.log('  cancel <id>           Cancel a scheduled job');
+    console.log('  logout                Logout and clear session');
+    console.log('  help                  Show this help');
+    console.log('');
+    console.log('Examples:');
+    console.log('  lazypush schedule');
+    console.log('  lazypush schedule --at "tomorrow 9am"');
+    console.log('  lazypush jobs');
+    console.log('  lazypush list');
+  });
 
 program.parse(process.argv);
 

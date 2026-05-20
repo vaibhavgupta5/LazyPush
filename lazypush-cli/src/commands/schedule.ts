@@ -27,25 +27,23 @@ export async function handleScheduleInteractive() {
       warn(`Found ${files.length} uncommitted file(s):`);
       files.forEach(f => info(`  - ${f}`));
       info('');
-      
-      const { addFiles } = await inquirer.prompt([
-        {
-          type: 'confirm',
-          name: 'addFiles',
-          message: 'Add all changes before scheduling?',
-          default: true
-        }
-      ]);
 
-      if (addFiles) {
-        try {
-          require('child_process').execSync('git add .', { stdio: 'inherit' });
-          success('Files staged for commit');
-          info('');
-        } catch (e) {
-          error('Failed to add files');
-          process.exit(1);
+      try {
+        require('child_process').execSync('git add .', { stdio: 'inherit' });
+        success('Files staged for commit');
+        const staged = require('child_process')
+          .execSync('git diff --name-only --cached', { encoding: 'utf8' })
+          .trim();
+        if (staged) {
+          info('Staged files:');
+          staged.split('\n').forEach((f: string) => info(`  - ${f}`));
+        } else {
+          warn('No staged files found');
         }
+        info('');
+      } catch (e) {
+        error('Failed to stage files');
+        process.exit(1);
       }
     } else {
       success('Working directory clean');
