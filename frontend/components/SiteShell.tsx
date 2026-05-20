@@ -63,6 +63,15 @@ export function Header({ activeHref, showCommands }: HeaderProps) {
               <ExternalLink className="h-3.5 w-3.5" />
               GitHub
             </a>
+            <a
+              className="flex items-center gap-1.5 rounded-md border border-border bg-surface px-3 py-1.5 text-foreground hover:border-muted hover:text-heading transition-colors text-xs"
+              href="https://www.npmjs.com/package/lazypush-cli"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ExternalLink className="h-3.5 w-3.5" />
+              npm
+            </a>
             <ThemeToggle />
           </nav>
 
@@ -148,6 +157,17 @@ export function Header({ activeHref, showCommands }: HeaderProps) {
               <ExternalLink className="h-4 w-4" />
               GitHub
             </a>
+
+            <a
+              href="https://www.npmjs.com/package/lazypush-cli"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center gap-2 px-3 py-2.5 rounded-md text-base font-medium text-muted hover:text-heading hover:bg-surface transition-colors"
+            >
+              <ExternalLink className="h-4 w-4" />
+              npm
+            </a>
           </nav>
 
           {/* Footer inside sidebar */}
@@ -168,6 +188,7 @@ export function Footer() {
         <div className="flex items-center gap-5 text-sm text-muted">
           <a href="https://x.com/vaixbhav_" target="_blank" rel="noopener noreferrer" className="hover:text-heading transition-colors">X</a>
           <a href="https://github.com/vaibhavgupta5" target="_blank" rel="noopener noreferrer" className="hover:text-heading transition-colors">GitHub</a>
+          <a href="https://www.npmjs.com/package/lazypush-cli" target="_blank" rel="noopener noreferrer" className="hover:text-heading transition-colors">npm</a>
           <a href="https://www.linkedin.com/in/vaibhav9705/" target="_blank" rel="noopener noreferrer" className="hover:text-heading transition-colors">LinkedIn</a>
         </div>
       </div>
