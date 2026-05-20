@@ -23,7 +23,7 @@ export default function Docs() {
             <section>
               <h2 className="text-2xl font-semibold text-heading">Install</h2>
               <pre className="mt-4 rounded-md border border-border bg-surface p-4 text-foreground">
-                <code>npm install -g lazypush</code>
+                <code>npm install -g lazypush-cli</code>
               </pre>
             </section>
 

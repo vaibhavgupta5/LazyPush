@@ -2,12 +2,12 @@
 
 <div align="center">
 
-[![npm version](https://img.shields.io/npm/v/lazypush?color=3fb950&label=lazypush&logo=npm&style=flat-square)](https://www.npmjs.com/package/lazypush)
-[![npm downloads](https://img.shields.io/npm/dm/lazypush?color=58a6ff&style=flat-square)](https://www.npmjs.com/package/lazypush)
+[![npm version](https://img.shields.io/npm/v/lazypush-cli?color=3fb950&label=lazypush-cli&logo=npm&style=flat-square)](https://www.npmjs.com/package/lazypush-cli)
+[![npm downloads](https://img.shields.io/npm/dm/lazypush-cli?color=58a6ff&style=flat-square)](https://www.npmjs.com/package/lazypush-cli)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18-brightgreen?style=flat-square&logo=node.js)](https://nodejs.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square)](../LICENSE)
 
-*Schedule Git commits for a future push — no local daemons, no open terminals, no guilt.*
+_Schedule Git commits for a future push — no local daemons, no open terminals, no guilt._
 
 </div>
 
@@ -17,14 +17,14 @@
 
 You finished the feature at 2pm. The standup is at 10am tomorrow. Pushing now means everyone knows you had the afternoon free, and guess who gets the next ticket assigned in 4 minutes?
 
-LazyPush lets you schedule the push for later. Your git history stays clean. Your commit timestamp is exactly what you want it to be. You get your afternoon back.
+lazypush lets you schedule the push for later. Your git history stays clean. Your commit timestamp is exactly what you want it to be. You get your afternoon back.
 
 ---
 
 ## Install
 
 ```bash
-npm install -g lazypush
+npm install -g lazypush-cli
 ```
 
 ---
@@ -73,15 +73,15 @@ Shut your laptop. The push will happen in the cloud at exactly that time.
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| `lazypush login` | Authenticate via GitHub OAuth. Opens browser, stores JWT locally. |
-| `lazypush schedule` | Interactive prompt to schedule a push. Auto-detects repo and branch. |
-| `lazypush jobs` | List all currently scheduled (pending) jobs. |
-| `lazypush list` | List all jobs — scheduled and finished — latest first. |
-| `lazypush cancel <id>` | Cancel a scheduled job by its ID. |
-| `lazypush logout` | Clear local session. |
-| `lazypush help` | Show all commands and options. |
+| Command                | Description                                                          |
+| ---------------------- | -------------------------------------------------------------------- |
+| `lazypush login`       | Authenticate via GitHub OAuth. Opens browser, stores JWT locally.    |
+| `lazypush schedule`    | Interactive prompt to schedule a push. Auto-detects repo and branch. |
+| `lazypush jobs`        | List all currently scheduled (pending) jobs.                         |
+| `lazypush list`        | List all jobs — scheduled and finished — latest first.               |
+| `lazypush cancel <id>` | Cancel a scheduled job by its ID.                                    |
+| `lazypush logout`      | Clear local session.                                                 |
+| `lazypush help`        | Show all commands and options.                                       |
 
 ---
 
@@ -89,13 +89,13 @@ Shut your laptop. The push will happen in the cloud at exactly that time.
 
 The time prompt accepts natural human input:
 
-| Input | Meaning |
-|-------|---------|
-| `5pm` | Today at 5:00 PM |
-| `17:30` | Today at 5:30 PM (24h) |
-| `tomorrow 9am` | Next day at 9:00 AM |
-| `in 2 hours` | 2 hours from now |
-| `friday 8pm` | Coming Friday at 8:00 PM |
+| Input          | Meaning                  |
+| -------------- | ------------------------ |
+| `5pm`          | Today at 5:00 PM         |
+| `17:30`        | Today at 5:30 PM (24h)   |
+| `tomorrow 9am` | Next day at 9:00 AM      |
+| `in 2 hours`   | 2 hours from now         |
+| `friday 8pm`   | Coming Friday at 8:00 PM |
 
 Timezone examples: `IST`, `EST`, `UTC`, `America/New_York`, `Asia/Kolkata`
 
@@ -143,49 +143,6 @@ After `lazypush login`, credentials are stored at:
 ```
 
 Protected by OS file permissions. Run `lazypush logout` to clear it.
-
----
-
-## Source Structure
-
-```
-src/
-├── cli.ts              # Entry point — command registration via Commander.js
-├── config.ts           # Session read/write (~/.lazypush/session.json)
-├── logger.ts           # Colored terminal output (✓ green, ✗ red, ℹ blue)
-├── api/
-│   └── client.ts       # Authenticated HTTP client to backend
-├── commands/
-│   ├── login.ts        # OAuth flow + token storage
-│   ├── schedule.ts     # Interactive prompt + bundle upload
-│   ├── jobs.ts         # Fetch and display active jobs
-│   ├── list.ts         # Fetch and display all jobs
-│   ├── cancel.ts       # Cancel job by ID
-│   └── logout.ts       # Clear session
-└── utils/
-    ├── git.ts          # git bundle, gzip, base64
-    └── scheduler.ts    # Human-readable time parsing
-```
-
----
-
-## Development
-
-```bash
-npm install
-npm run dev        # ts-node-dev with auto-reload
-
-# link locally to test as a global command
-npm link
-lazypush login
-```
-
-## Build & Publish
-
-```bash
-npm run build      # tsc → dist/
-npm publish --access public
-```
 
 ---
 

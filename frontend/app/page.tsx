@@ -82,7 +82,7 @@ export default function Home() {
                 <div className="flex items-center">
                   <Prompt />
                   <span className="text-foreground">
-                    npm install -g lazypush
+                    npm install -g lazypush-cli
                   </span>
                 </div>
                 <div className="flex items-center">

@@ -1,6 +1,6 @@
 {
-  "name": "lazypush",
-  "version": "0.1.0",
+  "name": "lazypush-cli",
+  "version": "0.1.1",
   "description": "Schedule Git commits for future push",
   "main": "dist/cli.js",
   "bin": {

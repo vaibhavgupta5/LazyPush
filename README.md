@@ -2,8 +2,8 @@
 
 <div align="center">
 
-[![npm version](https://img.shields.io/npm/v/lazypush?color=3fb950&label=lazypush&logo=npm&style=flat-square)](https://www.npmjs.com/package/lazypush)
-[![npm downloads](https://img.shields.io/npm/dm/lazypush?color=58a6ff&style=flat-square)](https://www.npmjs.com/package/lazypush)
+[![npm version](https://img.shields.io/npm/v/lazypush-cli?color=3fb950&label=lazypush-cli&logo=npm&style=flat-square)](https://www.npmjs.com/package/lazypush-cli)
+[![npm downloads](https://img.shields.io/npm/dm/lazypush-cli?color=58a6ff&style=flat-square)](https://www.npmjs.com/package/lazypush-cli)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18-brightgreen?style=flat-square&logo=node.js)](https://nodejs.org)
 [![GitHub Stars](https://img.shields.io/github/stars/vaibhavgupta5/LazyPush?style=flat-square&color=ffd700)](https://github.com/vaibhavgupta5/LazyPush)
@@ -86,7 +86,7 @@ LazyPush/
 ## Quick Install
 
 ```bash
-npm install -g lazypush
+npm install -g lazypush-cli
 ```
 
 ```bash
