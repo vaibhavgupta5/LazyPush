@@ -100,8 +100,8 @@ async function waitForOAuthCallback(): Promise<string | null> {
 
     server.listen(port, () => {
       info("Opening browser for GitHub authentication...");
-      const apiUrl = process.env.LAZYPUSH_API || "http://localhost:8000";
-      const loginUrl = `${apiUrl}/auth/github?redirect_uri=http://localhost:${port}/auth/callback`;
+      const apiUrl = process.env.LAZYPUSH_API || "https://lazypush.onrender.com";
+      const loginUrl = `${apiUrl}/auth/github?redirect_uri=https://lazypush.onrender.com/auth/callback`;
 
       open(loginUrl);
       info("Browser opened. If it did not open, visit:");

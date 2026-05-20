@@ -28,6 +28,9 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
+# Install git (required for pushing commits)
+RUN apk add --no-cache git
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 COPY package.json ./

@@ -9,6 +9,9 @@ import { startWorker } from './worker';
 
 const app = new Hono();
 
+// Health check route
+app.get('/', (c) => c.json({ status: 'ok', message: 'LazyPush server is running' }));
+
 app.route('/auth', authRoutes);
 app.route('/schedule', scheduleRoutes);
 
