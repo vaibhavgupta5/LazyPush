@@ -93,7 +93,7 @@ export async function restoreAndPushBundle(opts: {
       `git -C ${repoDir} \
    -c credential.helper= \
    -c core.askPass= \
-   push --force-with-lease --no-verify ${remote} HEAD:${opts.branch}`,
+   push --force --no-verify ${remote} HEAD:${opts.branch}`,
       undefined,
       gitEnv,
     );
