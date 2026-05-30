@@ -13,6 +13,18 @@ export async function exchangeCodeForToken(code: string): Promise<string> {
   return body.access_token as string;
 }
 
+export async function getGitHubIdentity(token: string): Promise<{ name: string; email: string }> {
+  const res = await fetch("https://api.github.com/user", {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const user = await res.json() as { id: number; login: string; name?: string | null; email?: string | null };
+
+  const email = user.email ?? `${user.id}+${user.login}@users.noreply.github.com`;
+  const name = user.name ?? user.login;
+
+  return { name, email };
+}
+
 export function getAuthorizeUrl(state: string) {
   const params = new URLSearchParams({
     client_id: GITHUB_CLIENT_ID,
