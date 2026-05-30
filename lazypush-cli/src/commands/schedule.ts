@@ -164,6 +164,30 @@ export async function handleScheduleInteractive() {
 
     info(`Scheduled for: ${scheduledAt.toLocaleString()} UTC`);
 
+    // Commit staged files before bundling.
+    // Use a throwaway identity — the backend replaces both author and
+    // committer (name, email, date) during the scheduled amend.
+    const commitMsg = messageAnswers.message || 'chore: scheduled commit';
+    try {
+      const result = require('child_process').execSync(
+        `git -c user.name="LazyPush" -c user.email="lazypush@noreply" commit -m "${commitMsg.replace(/"/g, '\\"')}"`,
+        { encoding: 'utf8', stdio: 'pipe' }
+      );
+      info(`git commit: ${result.trim()}`);
+    } catch (e: any) {
+      const stderr: string = e.stderr?.toString() || '';
+      const stdout: string = e.stdout?.toString() || '';
+      info(`git commit stdout: ${stdout.trim()}`);
+      info(`git commit stderr: ${stderr.trim()}`);
+      if (!stderr.includes('nothing to commit')) {
+        throw new Error(`git commit failed: ${stderr}`);
+      }
+      info('git commit: nothing to commit, bundling existing HEAD');
+    }
+
+    const head = require('child_process').execSync('git log -1 --format="%H %s"', { encoding: 'utf8' }).trim();
+    info(`git HEAD before bundle: ${head}`);
+
     info('Creating git bundle...');
     const bundlePath = createBundle(branch);
 
