@@ -4,6 +4,7 @@ import os from "os";
 import path from "path";
 import zlib from "zlib";
 import { info } from "../logger";
+import { getGitHubIdentity } from "../services/github";
 
 function run(cmd: string, cwd?: string, env?: NodeJS.ProcessEnv) {
   return new Promise<{ stdout: string; stderr: string }>((resolve, reject) => {
@@ -88,13 +89,22 @@ export async function restoreAndPushBundle(opts: {
       );
     }
 
-    // Rewrite the last commit's author and committer timestamps.
-    // Pass dates via env (not inline shell prefix) so they are reliably set
-    // regardless of how exec() invokes the shell.
+    // Rewrite the last commit's author, committer, and timestamps.
+    // Pass everything via env (not inline shell prefix) so they are reliably
+    // set regardless of how exec() invokes the shell.
     const iso = opts.scheduledAt.toISOString();
+
+    info("git: fetching github user identity");
+    const identity = await getGitHubIdentity(opts.token);
+    info(`git: committing as ${identity.name} <${identity.email}>`);
+
     const amendEnv: NodeJS.ProcessEnv = {
       GIT_AUTHOR_DATE: iso,
       GIT_COMMITTER_DATE: iso,
+      GIT_AUTHOR_NAME: identity.name,
+      GIT_AUTHOR_EMAIL: identity.email,
+      GIT_COMMITTER_NAME: identity.name,
+      GIT_COMMITTER_EMAIL: identity.email,
       GIT_TERMINAL_PROMPT: "0",
       GIT_CONFIG_NOSYSTEM: "1",
     };

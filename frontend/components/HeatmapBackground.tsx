@@ -11,6 +11,7 @@ const generateLevel = (i: number): number => {
   return 0;
 };
 
+
 export const HeatmapBackground = () => {
   const [cols, setCols] = useState(52);
 
