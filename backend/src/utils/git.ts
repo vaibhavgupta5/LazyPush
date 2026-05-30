@@ -112,7 +112,7 @@ export async function restoreAndPushBundle(opts: {
     info(`git: amend commit timestamps to ${iso}`);
     try {
       const result = await run(
-        `git -C ${repoDir} commit --amend --no-edit`,
+        `git -C ${repoDir} commit --amend --no-edit --reset-author`,
         undefined,
         amendEnv,
       );
