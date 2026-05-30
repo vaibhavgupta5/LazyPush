@@ -1,6 +1,2 @@
-<<<<<<< HEAD
-test schedule 3
-=======
-test schedule 2
->>>>>>> 0a9f6682382e84447b86243549915eeafa1f1eb9
+test schedule 4
 
