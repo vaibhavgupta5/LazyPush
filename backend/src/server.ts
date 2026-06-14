@@ -6,8 +6,17 @@ import authRoutes from './routes/auth';
 import scheduleRoutes from './routes/schedule';
 import { info, error } from './logger';
 import { startWorker } from './worker';
+import { cors } from 'hono/cors'
 
 const app = new Hono();
+
+app.use(
+  '/*',
+  cors({
+    origin: '*',
+  })
+)
+
 
 // Health check route
 app.get('/', (c) => c.json({ status: 'ok', message: 'LazyPush server is running' }));
