@@ -50,8 +50,8 @@ auth.get('/callback', async (c) => {
     
     const jwtToken = jwt.sign({ userId: String(user._id), username: user.username, exp: Math.floor(Date.now() / 1000) + 30 * 24 * 60 * 60 }, JWT_SECRET);
     
-    // If CLI provided a redirect_uri, redirect there with token
-    if (cliRedirectUri && cliRedirectUri.includes('localhost')) {
+    // If a redirect_uri was provided (from CLI or web frontend), redirect there with token
+    if (cliRedirectUri) {
       return c.redirect(`${cliRedirectUri}?token=${encodeURIComponent(jwtToken)}`);
     }
     
