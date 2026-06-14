@@ -10,10 +10,8 @@ import {
   Terminal,
   GitBranch,
   ArrowRight,
-  ExternalLink,
 } from "lucide-react";
 import Link from "next/link";
-import { ThemeToggle } from "../components/ThemeToggle";
 import { Header, Footer } from "../components/SiteShell";
 
 import { HeatmapBackground } from "../components/HeatmapBackground";
@@ -55,13 +53,13 @@ export default function Home() {
                   Get Started
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
-                <a
-                  href="#commands"
+                <Link
+                  href="/dashboard"
                   className="inline-flex items-center gap-2 rounded-md border border-border bg-surface px-5 py-2.5 text-sm font-medium text-foreground hover:border-[#8b949e] hover:text-heading transition-colors"
                 >
-                  <Terminal className="h-3.5 w-3.5" />
-                  View Commands
-                </a>
+                  <ListChecks className="h-3.5 w-3.5" />
+                  Dashboard
+                </Link>
               </div>
             </div>
 

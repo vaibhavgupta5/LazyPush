@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ExternalLink, Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { useAuthStore } from "../store/useAuthStore";
 
 interface HeaderProps {
   activeHref?: string;
@@ -18,6 +19,15 @@ export function Header({ activeHref, showCommands }: HeaderProps) {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
+
+  const { token } = useAuthStore();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const loginUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/github?redirect_uri=${typeof window !== "undefined" ? window.location.origin : ""}/auth/callback`;
 
   const navLinks = [
     { label: "Docs", href: "/docs" },
@@ -72,6 +82,23 @@ export function Header({ activeHref, showCommands }: HeaderProps) {
               <ExternalLink className="h-3.5 w-3.5" />
               npm
             </a>
+            {mounted && (
+              token ? (
+                <Link
+                  href="/dashboard"
+                  className="rounded-md bg-foreground px-3 py-1.5 text-xs font-medium text-black! hover:bg-white hover:text-black transition-colors"
+                >
+                  Dashboard
+                </Link>
+              ) : (
+                <a
+                  href={loginUrl}
+                  className="rounded-md bg-foreground px-3 py-1.5 text-xs font-medium text-background hover:bg-muted transition-colors"
+                >
+                  Login
+                </a>
+              )
+            )}
             <ThemeToggle />
           </nav>
 
@@ -168,6 +195,28 @@ export function Header({ activeHref, showCommands }: HeaderProps) {
               <ExternalLink className="h-4 w-4" />
               npm
             </a>
+            
+            <div className="mt-2">
+              {mounted && (
+                token ? (
+                  <Link
+                    href="/dashboard"
+                    onClick={() => setMenuOpen(false)}
+                    className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-md text-base font-medium bg-foreground text-background hover:bg-muted transition-colors w-full"
+                  >
+                    Dashboard
+                  </Link>
+                ) : (
+                  <a
+                    href={loginUrl}
+                    onClick={() => setMenuOpen(false)}
+                    className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-md text-base font-medium bg-foreground text-background hover:bg-muted transition-colors w-full"
+                  >
+                    Login
+                  </a>
+                )
+              )}
+            </div>
           </nav>
 
           {/* Footer inside sidebar */}
