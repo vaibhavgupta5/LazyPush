@@ -146,7 +146,7 @@ export default function Dashboard() {
                 logout();
                 router.push("/");
               }}
-              className="rounded-md border border-border bg-surface px-4 py-2 text-sm text-foreground hover:border-muted hover:text-heading transition-colors"
+              className="rounded-md border border-border bg-surface px-4 py-2 text-sm text-foreground hover:border-muted hover:text-heading cursor-pointer transition-colors"
             >
               Logout
             </button>

@@ -93,7 +93,7 @@ export function Header({ activeHref, showCommands }: HeaderProps) {
               ) : (
                 <a
                   href={loginUrl}
-                  className="rounded-md bg-foreground px-3 py-1.5 text-xs font-medium text-background hover:bg-muted transition-colors"
+                  className="rounded-md bg-foreground px-3 py-1.5 text-xs font-medium text-black! hover:bg-white hover:text-black transition-colors"
                 >
                   Login
                 </a>
